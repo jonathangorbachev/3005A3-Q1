@@ -1,7 +1,7 @@
 
 # Flask CRUD Application with Docker and PostgreSQL
 
-## video link (here)[https://youtu.be/vKqLRRDIA2w]
+## video link [here](https://youtu.be/vKqLRRDIA2w)
 
 This is a simple CRUD (Create, Read, Update, Delete) application that provides various REST API endpoints to interact with a PostgreSQL database. This application allows you to:
 
