@@ -1,0 +1,39 @@
+# a file and a CLI too
+version: "3.9"
+
+services:
+  # we want to create a docker file for our flask app
+  flask_app:
+    container_name: flask_app
+    restart: always
+    image: jonathangorbachev/flask_live_app:1.0.0
+    # we want to build in this path^
+    build: .
+    ports:
+      - "4000:4000"
+    environment:
+      - DB_URL=postgresql://postgres:postgres@flask_db:5432/postgres
+    depends_on:
+      - flask_db
+  flask_db:
+    container_name: flask_db
+    image: postgres:12
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"
+volumes:
+  pgdata: {}
